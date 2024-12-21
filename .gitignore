@@ -1,0 +1,15 @@
+# git ignore file patterns
+
+!.py
+!.ipynb
+
+docs/
+venv/
+raw_data/
+
+*.png
+*.csv
+
+# Enviornment Variables
+*env_vars.py*
+
