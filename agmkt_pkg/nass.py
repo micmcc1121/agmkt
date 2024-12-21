@@ -5,6 +5,8 @@ related to ETL of NASS data.
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def cattle_expansion_vars(df):
     """Calculates variables relating to inventory cycles.  Creates a datetime index to anchor the time series.
@@ -27,3 +29,33 @@ def cattle_expansion_vars(df):
     except:
         print('DataFrame ETL error')
     return df0
+
+def time_series_chart(stmt_dict, db_connect,table='nass_crops_fmt'):
+    """Calculates variables relating to inventory cycles.  Creates a datetime index to anchor the time series.
+
+    Args:
+        stmt_dict (dictionary): dictionary with column names as keys and filter values as values.
+        db_connect (SQLAlchemy create_engine connection): SQL database connection
+
+    Returns:
+        matplotlib object and png image: returns a matplotlib object and png file
+    """   
+    filter_string = ''
+
+    for key, value in stmt_dict.items():
+        filter_string += f"""AND "{key}" IN ('{value}')"""
+
+    select_stmt = f'''
+    SELECT *
+    FROM {table}
+    WHERE "SOURCE_DESC" IN ('SURVEY')
+    '''
+    select_stmt += filter_string
+    select_stmt += ';'
+
+    df = pd.read_sql(select_stmt, con = db_connect)
+    
+    df['date'] = df['YEAR'].astype('str') + '-01-01' #Need to generalize for monthly and quartelry data
+    df['date'] = pd.to_datetime(df['date'])
+
+    return df
