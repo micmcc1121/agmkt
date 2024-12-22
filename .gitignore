@@ -13,3 +13,6 @@ raw_data/
 # Enviornment Variables
 *env_vars.py*
 
+# VS Code-specific files
+.DS_Store
+

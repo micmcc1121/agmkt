@@ -60,3 +60,43 @@ def df_time_series_chart(stmt_dict, db_connect, table='nass_crops_fmt'):
     # Make datetime index once date variable is generalized
 
     return df
+
+def time_series_chart(df, dict, path, years=50, scale='Unit'):
+    """_summary_
+
+    Args:
+        df (_type_): _description_
+        scale (str, optional): _description_. Defaults to 'Unit'.
+    """
+    scale_dict = {
+        'Unit':{'value':1, 'label':''},
+        'Thousand':{'value':1e3, 'label':'Thousand'},
+        'Million':{'value':1e6, 'label':'Million'},
+        'Billion':{'value':1e9, 'label':'Billion'},
+    }
+
+    df_viz = df[df['date'].dt.year >= df['date'].dt.year.max() - years]
+
+    dict = dict
+
+    str_commodity = dict['COMMODITY_DESC'].title()
+    str_statistic = dict['STATISTICCAT_DESC'].title()
+    str_unit = dict['UNIT_DESC'].title()
+
+    fig = plt.subplot()
+    scale = scale
+    scale_value = scale_dict[scale]['value']
+    scale_label = scale_dict[scale]['label']
+    sns.lineplot(data=df_viz, x='date', y=df['VALUE']/scale_value)
+    sns.scatterplot(data=df_viz, x='date', y=df['VALUE']/scale_value)
+    plt.title(f'U.S. {str_commodity} {str_statistic}')
+    plt.ylabel(f'{scale_label} {str_unit}')
+    plt.xlabel('Crop Year')
+
+    file_commodity = str_commodity.lower()
+    file_statistic = str_statistic.lower()
+    filename = f'{file_commodity}_{file_statistic}.png'
+
+    plt.savefig(f'{path}/{filename}')
+
+    return f'Matplot chart saved to {path}/{filename}'
