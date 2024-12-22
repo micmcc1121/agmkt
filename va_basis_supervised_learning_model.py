@@ -13,8 +13,8 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 import psycopg2
-import cattle_cycle_pkg.nass as nass
-import cattle_cycle_pkg.env_vars as env_vars
+import agmkt_pkg.nass as nass
+import agmkt_pkg.env_vars as env_vars
 
 # For ML analysis
 from sklearn.linear_model import LinearRegression, Ridge, Lasso 

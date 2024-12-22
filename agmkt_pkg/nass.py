@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import agmkt_pkg.utils as utils
 
 def cattle_expansion_vars(df):
     """Calculates variables relating to inventory cycles.  Creates a datetime index to anchor the time series.
@@ -30,20 +31,19 @@ def cattle_expansion_vars(df):
         print('DataFrame ETL error')
     return df0
 
-def time_series_chart(stmt_dict, db_connect,table='nass_crops_fmt'):
+def df_time_series_chart(stmt_dict, db_connect, table='nass_crops_fmt'):
     """Calculates variables relating to inventory cycles.  Creates a datetime index to anchor the time series.
 
     Args:
         stmt_dict (dictionary): dictionary with column names as keys and filter values as values.
         db_connect (SQLAlchemy create_engine connection): SQL database connection
+        table (string): name of Table in the SELECT statement for the Postgresql database connection
 
     Returns:
         matplotlib object and png image: returns a matplotlib object and png file
     """   
-    filter_string = ''
-
-    for key, value in stmt_dict.items():
-        filter_string += f"""AND "{key}" IN ('{value}')"""
+    
+    filter_string = utils.sql_filter_string(stmt_dict)
 
     select_stmt = f'''
     SELECT *
@@ -57,5 +57,6 @@ def time_series_chart(stmt_dict, db_connect,table='nass_crops_fmt'):
     
     df['date'] = df['YEAR'].astype('str') + '-01-01' #Need to generalize for monthly and quartelry data
     df['date'] = pd.to_datetime(df['date'])
+    # Make datetime index once date variable is generalized
 
     return df
