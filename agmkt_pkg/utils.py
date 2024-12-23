@@ -16,7 +16,7 @@ def sql_filter_string(dict):
     filter_string = ''
 
     for key, value in dict.items():
-        filter_string += f"""AND "{key}" IN ('{value}')"""
+        filter_string += f"""AND "{key}" IN ('{value}') """
     return filter_string
 
 def keep_cols(df, default_cols):
