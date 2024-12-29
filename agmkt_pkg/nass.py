@@ -32,7 +32,7 @@ def cattle_expansion_vars(df):
     return df0
 
 def df_time_series_chart(stmt_dict, db_connect, table='nass_crops_fmt'):
-    """Calculates variables relating to inventory cycles.  Creates a datetime index to anchor the time series.
+    """Created dataframes filtering data from NASS QS SQL database
 
     Args:
         stmt_dict (dictionary): dictionary with column names as keys and filter values as values.
