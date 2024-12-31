@@ -95,8 +95,10 @@ def time_series_chart(df, dict, path, years=50, scale='Unit'):
 
     file_commodity = str_commodity.lower()
     file_statistic = str_statistic.lower()
-    filename = f'{file_commodity}_{file_statistic}.png'
+    file_unit = str_unit.replace(' ', '').replace('$', 'dollars').replace('/', 'per').lower() # replace any characters that would interfer with file path
+    filename = f'{file_commodity}_{file_statistic}_{file_unit}.png'
 
     plt.savefig(f'{path}/{filename}')
+    plt.clf()
 
-    return f'Matplot chart saved to {path}/{filename}'
+    return print(f'Matplot chart saved to {path}/{filename}')

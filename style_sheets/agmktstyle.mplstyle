@@ -1,9 +1,9 @@
 # Plot area background
-axes.facecolor : e1e1e1 # FFDDDD
-axes.edgecolor: e1e1e1 # FFDDDD
+axes.facecolor : e6e6e6 # FFDDDD
+axes.edgecolor: e6e6e6 # FFDDDD
 axes.grid : true
 
-grid.linestyle : -
+grid.linestyle : --
 grid.linewidth : 0.5
 
 figure.facecolor: ffffff
@@ -21,6 +21,7 @@ xtick.labelsize : 11
 ytick.labelsize : 11
 
 # Line and Marker
-lines.linewidth : 3
-lines.markersize : 10
+lines.linewidth : 2
+lines.markersize : 8
+lines.solid_capstyle: butt
 axes.prop_cycle: cycler('color', ['008fd5', 'fc4f30', 'e5ae38', '6d904f', '8b8b8b', '810f7c'])
