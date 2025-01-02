@@ -93,10 +93,20 @@ def time_series_chart(df, dict, path, years=50, scale='Unit'):
     plt.ylabel(f'{scale_label} {str_unit}')
     plt.xlabel('Crop Year')
 
-    file_commodity = str_commodity.lower()
-    file_statistic = str_statistic.lower()
-    file_unit = str_unit.replace(' ', '').replace('$', 'dollars').replace('/', 'per').lower() # replace any characters that would interfer with file path
-    filename = f'{file_commodity}_{file_statistic}_{file_unit}.png'
+    # Construct filename using select statement dictionary
+
+    keys = ['COMMODITY_DESC', 'CLASS_DESC', 'UTIL_PRACTICE_DESC', 'STATISTICCAT_DESC', 'UNIT_DESC', 'REFERENCE_PERIOD_DESC', 'STATE_ALPHA']
+
+    filename = ''
+
+    for key in keys:
+        if dict.get(key) == None:
+            next
+        else:
+            filename += dict.get(key).lower() + '_'
+
+    filename = filename[:-1] + '.png'
+    filename = filename.replace(' ', '').replace('$', 'dollars').replace('/', 'per').lower() # replace any characters that would interfer with file path
 
     plt.savefig(f'{path}/{filename}')
     plt.clf()
