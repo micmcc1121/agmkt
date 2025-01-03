@@ -16,7 +16,19 @@ def sql_filter_string(dict):
     filter_string = ''
 
     for key, value in dict.items():
-        filter_string += f"""AND "{key}" IN ('{value}') """
+        try:
+            if type(dict.get(key)) == str:
+                filter_string += f"""AND "{key}" IN ('{value}') """
+            elif type(dict.get(key)) == list:
+                list_str = ""
+                for v in value:
+                    list_str += f"""'{v}', """
+                list_str = list_str[:-2]
+                filter_string += f"""AND "{key}" IN ({list_str}) """
+            else:
+                TypeError("Dictionary value type no found for Filter String concatenation")
+        except: 
+            pass # Do not leave as a pass
     return filter_string
 
 def keep_cols(df, default_cols):

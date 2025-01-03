@@ -36,7 +36,7 @@ chart_path = './docs'
 stat_list = [#('AREA PLANTED', 'ACRES', 'Million'), 
              ('AREA HARVESTED', 'ACRES', 'YEAR', 'Million'), 
              ('YIELD', 'BU / ACRE', 'YEAR', 'Unit'), 
-             ('PRODUCTION', 'BU', 'YEAR', 'Million'), 
+             ('PRODUCTION', 'BU', 'YEAR', 'Billion'), 
              ('PRODUCTION', '$', 'YEAR', 'Billion'), 
              ('PRICE RECEIVED', '$ / BU', 'MARKETING YEAR', 'Unit')]
 
@@ -56,7 +56,7 @@ for s, u, f, unit in stat_list:
 stat_list = [('AREA PLANTED', 'ACRES', 'YEAR', 'Million'), 
              ('AREA HARVESTED', 'ACRES', 'YEAR', 'Million'), 
              ('YIELD', 'BU / ACRE', 'YEAR', 'Unit'), 
-             ('PRODUCTION', 'BU', 'YEAR', 'Million'), 
+             ('PRODUCTION', 'BU', 'YEAR', 'Billion'), 
              ('PRODUCTION', '$', 'YEAR', 'Billion'), 
              ('PRICE RECEIVED', '$ / BU', 'MARKETING YEAR', 'Unit')]
 
@@ -139,10 +139,10 @@ stat_list = [('AREA PLANTED', 'ACRES', 'YEAR', 'Million'),
              ('AREA HARVESTED', 'ACRES', 'YEAR', 'Million'), 
              ('YIELD', 'BU / ACRE', 'YEAR', 'Unit'), 
              ('PRODUCTION', 'BU', 'YEAR', 'Million'), 
-             ('PRODUCTION', '$', 'YEAR', 'Billion'), 
+             ('PRODUCTION', '$', 'YEAR', 'Million'), 
              ('PRICE RECEIVED', '$ / BU', 'MARKETING YEAR', 'Unit')]
 
-for s, u, unit in stat_list:
+for s, u, f, unit in stat_list:
     stmt_dict = {'COMMODITY_DESC':'OATS', 
                  'PRODN_PRACTICE_DESC':'ALL PRODUCTION PRACTICES',  
                  'STATISTICCAT_DESC':s, 
@@ -159,8 +159,8 @@ for s, u, unit in stat_list:
 stat_list = [('AREA PLANTED', 'ACRES', 'YEAR', 'Million'), 
              ('AREA HARVESTED', 'ACRES', 'YEAR', 'Million'), 
              ('YIELD', 'LB / ACRE', 'YEAR', 'Unit'), 
-             ('PRODUCTION', 'LB', 'YEAR', 'Million'), 
-             ('PRODUCTION', '$', 'YEAR', 'Billion'), ]
+             ('PRODUCTION', 'LB', 'YEAR', 'Billion'), 
+             ('PRODUCTION', '$', 'YEAR', 'Million'), ]
 
 for s, u, f, unit in stat_list:
     stmt_dict = {'COMMODITY_DESC':'CANOLA', 
@@ -179,8 +179,8 @@ for c in class_list:
     stat_list = [('AREA PLANTED', 'ACRES', 'YEAR', 'Million'), 
                  ('AREA HARVESTED', 'ACRES', 'YEAR', 'Million'), 
                  ('YIELD', 'LB / ACRE', 'YEAR', 'Unit'), 
-                 ('PRODUCTION', 'LB', 'YEAR', 'Million'), 
-                 ('PRODUCTION', '$', 'YEAR', 'Billion'), 
+                 ('PRODUCTION', 'LB', 'YEAR', 'Billion'), 
+                 ('PRODUCTION', '$', 'YEAR', 'Million'), 
                  ('PRICE RECEIVED', '$ / CWT', 'MARKETING YEAR', 'Unit')]
 
     for s, u, f, unit in stat_list:
